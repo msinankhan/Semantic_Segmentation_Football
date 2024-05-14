@@ -2,7 +2,13 @@
 
 ## Description
 
-This repository contains the code for the project "Optimizing Semantic Segmentation for Enhanced Football Analytics: A Pixel-level Approach," soon to be published in the Procedia Computer Science Journal.
+This repository contains the code for the project "Optimizing Semantic Segmentation for Enhanced Football Analytics: A Pixel-level Approach," which will be published in the Procedia Computer Science Journal. The project focuses on leveraging advanced deep learning techniques to optimize semantic segmentation in the context of football analytics.
+
+Semantic segmentation is a crucial technique in computer vision that involves classifying each pixel in an image into a specific category. In this project, we apply this technique to analyze football images, aiming to enhance various aspects of football analytics, including player tracking, strategy analysis, and event annotation.
+
+Our approach involves training multiple state-of-the-art deep learning models on a dataset of manually annotated football images. The models are designed to segment key components of a football match, such as players, the ball, the field, and other relevant elements. By optimizing these models, we aim to provide precise and detailed insights into football games, which can be invaluable for coaches, analysts, and broadcasters.
+
+The repository includes the full pipeline for training, testing, and deploying these models, along with the necessary code, dataset structure, and pre-trained weights. The results demonstrate significant improvements in segmentation accuracy, making this approach highly effective for real-world football analytics applications.
 
 ## Table of Contents
 
