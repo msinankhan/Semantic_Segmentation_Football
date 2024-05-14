@@ -281,7 +281,3 @@ The predicted output will be saved in the `Predictions` folder.
 ## Acknowledgments
 
 We would like to thank Dr. Srinivas Padmanabhuni and AiEnsured for their invaluable guidance and support during this research. We also express our gratitude to The Vision Group of Science & Technology, Government of Karnataka, and The Principal, BMS Institute of Technology & Management, for providing the necessary infrastructure and resources.
-
-## License
-
-This project is licensed under the CC BY-NC-ND license. For more details, see [LICENSE](LICENSE).
