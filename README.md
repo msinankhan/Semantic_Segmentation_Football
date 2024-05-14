@@ -1,205 +1,287 @@
+# Optimizing Semantic Segmentation for Enhanced Football Analytics
+
 ## Description
 
-This repository contains the code for a project soon to be published in the Procedia Computer Science Journal. The title of the paper is "Optimizing Semantic Segmentation for Enhanced Football Analytics: A Pixel-level Approach."
+This repository contains the code for the project "Optimizing Semantic Segmentation for Enhanced Football Analytics: A Pixel-level Approach," soon to be published in the Procedia Computer Science Journal.
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Dataset Structure](#dataset-structure)
+- [Results](#results)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Training](#training)
+  - [Testing](#testing)
+  - [Predicting](#predicting)
+- [Command-line Arguments](#command-line-arguments)
+  - [Training Parameters](#training-parameters)
+  - [Testing Parameters](#testing-parameters)
+  - [Predicting Parameters](#predicting-parameters)
+- [Acknowledgments](#acknowledgments)
+- [License](#license)
 
 ## Overview
 
-Five models were trained on a dataset of 2,000 manually annotated images from a variety of real football events. The resulting model weights are stored in the `weights` folder.
+This project involves training five models on a dataset of 2,000 manually annotated images from various real football events to optimize semantic segmentation for enhanced football analytics. The resulting model weights are stored in the `weights` folder.
 
 ## Dataset Structure
 
-The dataset of manually annotated football images used for training is located in the `Football_Seg` folder. It is divided into three sections: training, testing, and validation.
-
-To ensure your dataset is organized correctly, follow this structure:
+The dataset of manually annotated football images is located in the `Football_Seg` folder, organized into training, validation, and testing sections. Ensure your dataset follows this structure:
 
 ```plaintext
-|-- dataset
-|  |-- train
-|  |  |-- images
-|  |  |-- labels
-|  |-- valid
-|  |  |-- images
-|  |  |-- labels
-|  |-- test
-|  |  |-- images
-|  |  |-- labels
-|  |-- class_dict.csv
-|  |-- evaluated_classes
+Football_Seg/
+├── train/
+│   ├── images/
+│   └── labels/
+├── valid/
+│   ├── images/
+│   └── labels/
+├── test/
+│   ├── images/
+│   └── labels/
+├── class_dict.csv
+└── evaluated_classes
 ```
 
-Here's a breakdown of the components:
+### Components
 
-- **train**: Contains the training data, with separate subfolders for `images` and `labels`.
-- **valid**: Contains the validation data, also with `images` and `labels`.
-- **test**: Houses the test data, with the same `images` and `labels` structure.
-- **class_dict.csv**: A CSV file that maps class names to their corresponding label values.
-- **evaluated_classes**: A file or list detailing which classes will be evaluated during training/testing.
-
-Ensure your dataset conforms to this structure to facilitate a smooth training and testing process.
-
-
+- **train/**: Contains training data with `images` and `labels` subfolders.
+- **valid/**: Contains validation data with `images` and `labels` subfolders.
+- **test/**: Contains test data with `images` and `labels` subfolders.
+- **class_dict.csv**: CSV file mapping class names to label values.
+- **evaluated_classes**: Details classes evaluated during training/testing.
 
 ## Results
 
-Here's the performance of the pipeline models on the Football_Seg dataset, formatted into a table:
+Performance of the pipeline models on the Football_Seg dataset:
 
-| Model       | Backbone          | Number of Epochs | Training mIoU (%) | Validation mIoU (%) |
-|-------------|-----------------|-----------------|-----------------|--------------------|
-| DeepLabV3+  | Xception-DeepLab | 40 + 10          | 77.18            | 58.87               |
-| DeepLabV3   | ResNet50          | 50               | 76.24            | 51.36               |
-| PSPNet      | ResNet50          | 50               | 77.29            | 58.19               |
-| UNet        | VGG16             | 50               | 69.36            | 53.77               |
-| SegNet      | VGG16             | 40               | 59.47            | 52.20               |
-
+| Model       | Backbone          | Epochs | Training mIoU (%) | Validation mIoU (%) |
+|-------------|--------------------|--------|--------------------|---------------------|
+| DeepLabV3+  | Xception-DeepLab   | 50     | 77.18              | 58.87               |
+| DeepLabV3   | ResNet50           | 50     | 76.24              | 51.36               |
+| PSPNet      | ResNet50           | 50     | 77.29              | 58.19               |
+| UNet        | VGG16              | 50     | 69.36              | 53.77               |
+| SegNet      | VGG16              | 40     | 59.47              | 52.20               |
 
 ## Requirements
 
-To get started, install the required packages listed in `requirements.txt` with the following command:
+To run this project, you need the following libraries:
 
-```bash
-pip install -r requirements.txt
-```
+- numpy
+- pillow
+- opencv-python
+- tensorflow
+- scipy
 
-This ensures that you have all the necessary dependencies and libraries to run the project without any compatibility issues. If you're setting up a virtual environment, make sure to activate it before running this command.
+These can be installed using the `requirements.txt` file.
 
+## Installation
 
-## Training
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/your-repo/football-segmentation.git
+    cd football-segmentation
+    ```
+2. Install the required packages:
+    ```bash
+    pip install -r requirements.txt
+    ```
+3. (Optional) Set up a virtual environment:
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
 
-To train a model with your own dataset, use the following command to build it:
+## Usage
+
+### Training
+
+To train a model with your dataset, use the following command:
 
 ```bash
 python train.py --model SegNet --base_model VGG16 --dataset Football_Seg --num_classes 6
 ```
 
-The following is the list of detailed command-line parameters for training a model using `train.py`:
+#### Detailed Options:
 
-```bash
-usage: train.py [-h]
-                --model MODEL
-                [--base_model BASE_MODEL]
-                --dataset DATASET
-                [--loss {CE,Focal_Loss}]
-                --num_classes NUM_CLASSES
-                [--random_crop RANDOM_CROP]
-                [--crop_height CROP_HEIGHT]
-                [--crop_width CROP_WIDTH]
-                [--batch_size BATCH_SIZE]
-                [--valid_batch_size VALID_BATCH_SIZE]
-                [--num_epochs NUM_EPOCHS]
-                [--initial_epoch INITIAL_EPOCH]
-                [--h_flip H_FLIP]
-                [--v_flip V_FLIP]
-                [--brightness BRIGHTNESS [BRIGHTNESS ...]]
-                [--rotation ROTATION]
-                [--zoom_range ZOOM_RANGE [ZOOM_RANGE ...]]
-                [--channel_shift CHANNEL_SHIFT]
-                [--data_aug_rate DATA_AUG_RATE]
-                [--checkpoint_freq CHECKPOINT_FREQ]
-                [--validation_freq VALIDATION_FREQ]
-                [--num_valid_images NUM_VALID_IMAGES]
-                [--data_shuffle DATA_SHUFFLE]
-                [--random_seed RANDOM_SEED]
-                [--weights WEIGHTS]
-```
+- `--model`: Specifies the semantic segmentation model to use.
+  - Options: `SegNet`, `UNet`, `PSPNet`, `DeepLabV3`, `DeepLabV3Plus`
+- `--base_model`: Defines the backbone architecture for the model.
+  - Options: `VGG16`, `ResNet50`, `Xception-DeepLab`, `MobileNetV2`, `Densenet121`
+- `--dataset`: Path to the dataset.
+  - Example: `Football_Seg`
+- `--loss`: Loss function to use during training.
+  - Options: `CE` (Cross-Entropy), `Focal_Loss`
+- `--num_classes`: Number of output classes.
+  - Example: `6`
+- `--random_crop`: Whether to apply random cropping.
+  - Options: `True`, `False`
+- `--crop_height`: Height of the crop (if random cropping is applied).
+- `--crop_width`: Width of the crop (if random cropping is applied).
+- `--batch_size`: Size of the training batches.
+  - Example: `8`
+- `--valid_batch_size`: Size of the validation batches.
+  - Example: `1`
+- `--num_epochs`: Number of training epochs.
+  - Example: `50`
+- `--initial_epoch`: Starting epoch number.
+  - Example: `0`
+- `--h_flip`: Whether to apply horizontal flip for data augmentation.
+  - Options: `True`, `False`
+- `--v_flip`: Whether to apply vertical flip for data augmentation.
+  - Options: `True`, `False`
+- `--brightness`: Brightness adjustment range for data augmentation.
+  - Example: `[0.7, 1.3]`
+- `--rotation`: Rotation angle for data augmentation.
+  - Example: `0.35`
+- `--zoom_range`: Zoom range for data augmentation.
+  - Example: `[0.4, 1.6]`
+- `--channel_shift`: Channel shift range for data augmentation.
+  - Example: `0.1`
+- `--data_aug_rate`: Proportion of the data to apply augmentation.
+  - Example: `0.1`
+- `--checkpoint_freq`: Frequency of saving model checkpoints.
+  - Example: `10`
+- `--validation_freq`: Frequency of validation during training.
+  - Example: `2`
+- `--num_valid_images`: Number of images to use for validation.
+  - Example: `18`
+- `--data_shuffle`: Whether to shuffle data during training.
+  - Options: `True`, `False`
+- `--random_seed`: Random seed for reproducibility.
+  - Example: `32`
+- `--weights`: Path to pre-trained weights (if applicable).
 
-Each parameter controls a specific aspect of the training process. Here's a brief explanation of some key parameters:
+### Testing
 
-- **model**: Name of the model to be trained (e.g., `SegNet`, `FCN`, etc.).
-- **base_model**: Base architecture used for the model (e.g., `VGG16`, `ResNet50`).
-- **dataset**: Path to the dataset used for training.
-- **loss**: Loss function used during training (e.g., `CE` for Cross-Entropy, `Focal_Loss`).
-- **num_classes**: Number of output classes.
-- **random_crop**: Whether to apply random cropping during data augmentation.
-- **crop_height/crop_width**: Dimensions of the crop.
-- **batch_size**: Size of training batches.
-- **valid_batch_size**: Size of validation batches.
-- **num_epochs**: Total number of training epochs.
-- **initial_epoch**: Starting epoch number.
-- **h_flip/v_flip**: Horizontal and vertical flip settings for data augmentation.
-- **brightness/rotation/zoom_range**: Parameters for other augmentation techniques.
-- **channel_shift**: Adjustments to color channels for augmentation.
-- **data_aug_rate**: Proportion of the data to which augmentation is applied.
-- **checkpoint_freq/validation_freq**: Frequency of saving model checkpoints and performing validation.
-- **num_valid_images**: Number of images to use for validation.
-- **data_shuffle**: Whether to shuffle the data during training.
-- **random_seed**: Random seed for reproducibility.
-- **weights**: Path to pre-trained model weights, if used.
-
-Use this command line to fine-tune your model's training process according to your specific requirements.
-
-
-Here are the optional command-line arguments for the `train.py` script:
-
-```plaintext
-optional arguments:
-  -h, --help            show this help message and exit
-  --model MODEL         Choose the semantic segmentation method.
-  --base_model BASE_MODEL
-                        Choose the backbone model.
-  --dataset DATASET     The path of the dataset.
-  --loss {CE,Focal_Loss}
-                        The loss function for training.
-  --num_classes NUM_CLASSES
-                        The number of classes to be segmented.
-  --random_crop RANDOM_CROP
-                        Whether to randomly crop the image.
-  --crop_height CROP_HEIGHT
-                        The height to crop the image.
-  --crop_width CROP_WIDTH
-                        The width to crop the image.
-  --batch_size BATCH_SIZE
-                        The training batch size.
-  --valid_batch_size VALID_BATCH_SIZE
-                        The validation batch size.
-  --num_epochs NUM_EPOCHS
-                        The number of epochs to train for.
-  --initial_epoch INITIAL_EPOCH
-                        The initial epoch of training.
-  --h_flip H_FLIP       Whether to randomly flip the image horizontally.
-  --v_flip V_FLIP       Whether to randomly flip the image vertically.
-  --brightness BRIGHTNESS [BRIGHTNESS ...]
-                        Randomly change the brightness (list).
-  --rotation ROTATION   The angle to randomly rotate the image.
-  --zoom_range ZOOM_RANGE [ZOOM_RANGE ...]
-                        The range for zooming the image.
-  --channel_shift CHANNEL_SHIFT
-                        The channel shift range.
-  --data_aug_rate DATA_AUG_RATE
-                        The rate of data augmentation.
-  --checkpoint_freq CHECKPOINT_FREQ
-                        How often to save a checkpoint.
-  --validation_freq VALIDATION_FREQ
-                        How often to perform validation.
-  --num_valid_images NUM_VALID_IMAGES
-                        The number of images used for validation.
-  --data_shuffle DATA_SHUFFLE
-                        Whether to shuffle the data.
-  --random_seed RANDOM_SEED
-                        The random shuffle seed.
-  --weights WEIGHTS     The path of weights to be loaded.
-```
-
-These arguments allow for customization of various aspects of the training process, such as the choice of model architecture, dataset paths, data augmentation settings, and more. Adjust them according to your specific requirements and preferences.
-
-
-
-## Testing
-
-To evaluate the model using your dataset, run the following command:
+To evaluate the model, run:
 
 ```bash
 python test.py --model SegNet --base_model VGG16 --dataset Football_Seg --num_classes 6 --weights "weights/weights_path"
 ```
 
-Make sure to replace `"weights/weights_path"` with the actual path to your model's weights file. This command will assess the model's performance based on your specific dataset and settings.
+#### Detailed Options:
 
-## Predicting
+- `--model`: Specifies the semantic segmentation model to use.
+  - Options: `SegNet`, `UNet`, `PSPNet`, `DeepLabV3`, `DeepLabV3Plus`
+- `--base_model`: Defines the backbone architecture for the model.
+  - Options: `VGG16`, `ResNet50`, `Xception-DeepLab`, `MobileNetV2`, `Densenet121`
+- `--dataset`: Path to the dataset.
+  - Example: `Football_Seg`
+- `--num_classes`: Number of output classes.
+  - Example: `6`
+- `--weights`: Path to the pre-trained model weights.
+  - Example: `weights/weights_path`
 
-To generate predictions for a single RGB image, use the following command:
+### Predicting
+
+To generate predictions for a single RGB image, use:
 
 ```bash
 python predict.py --model DeepLabV3 --base_model ResNet50 --num_classes 6 --weights "weights/DeepLabV3_based_on_ResNet50.h5" --image_path "Prediction_images/image_path"
 ```
 
-Replace `"Prediction_images/image_path"` with the actual path of the image you want to predict on. The predicted output will be saved in the `Predictions` folder.
+#### Detailed Options:
 
+- `--model`: Specifies the semantic segmentation model to use.
+  - Options: `SegNet`, `UNet`, `PSPNet`, `DeepLabV3`, `DeepLabV3Plus`
+- `--base_model`: Defines the backbone architecture for the model.
+  - Options: `VGG16`, `ResNet50`, `Xception-DeepLab`, `MobileNetV2`, `Densenet121`
+- `--num_classes`: Number of output classes.
+  - Example: `6`
+- `--weights`: Path to the pre-trained model weights.
+  - Example: `weights/DeepLabV3_based_on_ResNet50.h5`
+- `--image_path`: Path to the input image for prediction.
+  - Example: `Prediction_images/image_path`
+
+The predicted output will be saved in the `Predictions` folder.
+
+## Command-line Arguments
+
+### Training Parameters
+
+- `--model`: Choose the semantic segmentation model.
+  - Options: `SegNet`, `UNet`, `PSPNet`, `DeepLabV3`, `DeepLabV3Plus`
+- `--base_model`: Choose the backbone architecture.
+  - Options: `VGG16`, `ResNet50`, `Xception-DeepLab`, `MobileNetV2`, `Densenet121`
+- `--dataset`: Path to the dataset.
+  - Example: `Football_Seg`
+- `--loss`: Choose the loss function for training.
+  - Options: `CE`, `Focal_Loss`
+- `--num_classes`: Number of output classes to segment.
+  - Example: `6`
+- `--random_crop`: Apply random cropping during augmentation.
+  - Options: `True`, `False`
+- `--crop_height`: Height for random cropping.
+  - Example: `864`
+- `--crop_width`: Width for random cropping.
+  - Example: `864`
+- `--batch_size`: Training batch size.
+  - Example: `8`
+- `--valid_batch_size`: Validation batch size.
+  - Example: `1`
+- `--num_epochs`: Total number of training epochs.
+  - Example: `50`
+- `--initial_epoch`: Initial epoch to start training from.
+  - Example: `0`
+- `--h_flip`: Apply horizontal flip for augmentation.
+  - Options: `True`, `False`
+- `--v_flip`: Apply vertical flip for augmentation.
+  - Options: `True`, `False`
+- `--brightness`: Brightness range for augmentation.
+  - Example: `[0.7, 1.3]`
+- `--rotation`: Rotation angle for augmentation.
+  - Example: `0.35`
+- `--zoom_range`: Zoom range for augmentation.
+  - Example: `[0.4, 1.6]`
+- `--channel_shift`: Channel shift range for augmentation.
+  - Example: `0.1`
+- `--data_aug_rate`: Rate of data augmentation.
+  - Example: `0.1`
+- `--checkpoint_freq`: Frequency to save model checkpoints.
+  - Example: `10`
+- `--validation_freq`: Frequency to run validation.
+  - Example: `2`
+- `--num_valid_images`: Number of images to use for validation.
+  - Example: `18`
+- `--data_shuffle`: Shuffle data during training.
+  - Options: `True`, `False`
+- `--random_seed`: Seed for random number generation.
+  - Example: `32`
+- `--weights`: Path to pre-trained weights (optional).
+
+### Testing Parameters
+
+- `--model`: Choose the semantic segmentation model.
+  - Options: `SegNet`, `UNet`, `PSPNet`, `DeepLabV3`, `DeepLabV3Plus`
+- `--base_model`: Choose the backbone architecture.
+  - Options: `VGG16`, `ResNet50`, `Xception-DeepLab`, `MobileNetV2`, `Densenet121`
+- `--dataset`: Path to the dataset.
+  - Example: `Football_Seg`
+- `--num_classes`: Number of output classes to segment.
+  - Example: `6`
+- `--weights`: Path to the pre-trained model weights.
+  - Example: `weights/weights_path`
+
+### Predicting Parameters
+
+- `--model`: Choose the semantic segmentation model.
+  - Options: `SegNet`, `UNet`, `PSPNet`, `DeepLabV3`, `DeepLabV3Plus`
+- `--base_model`: Choose the backbone architecture.
+  - Options: `VGG16`, `ResNet50`, `Xception-DeepLab`, `MobileNetV2`, `Densenet121`
+- `--num_classes`: Number of output classes to segment.
+  - Example: `6`
+- `--weights`: Path to the pre-trained model weights.
+  - Example: `weights/DeepLabV3_based_on_ResNet50.h5`
+- `--image_path`: Path to the input image for prediction.
+  - Example: `Prediction_images/image_path`
+
+## Acknowledgments
+
+We would like to thank Dr. Srinivas Padmanabhuni and AiEnsured for their invaluable guidance and support during this research. We also express our gratitude to The Vision Group of Science & Technology, Government of Karnataka, and The Principal, BMS Institute of Technology & Management, for providing the necessary infrastructure and resources.
+
+## License
+
+This project is licensed under the CC BY-NC-ND license. For more details, see [LICENSE](LICENSE).
