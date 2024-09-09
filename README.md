@@ -14,7 +14,7 @@ The repository includes the full pipeline for training, testing, and deploying t
 
 [Authors]: **Bharathi Malakreddy A, Sadanand Venkataraman, Mohammed Sinan Khan,  Nidhi, Srinivas Padmanabhuni, Santhi Natarajan**
 
-[Paper]: https://www.sciencedirect.com/science/article/pii/S187705092400927X](https://doi.org/10.1016/j.procs.2024.04.251 
+[Paper]: [https://www.sciencedirect.com/science/article/pii/S187705092400927X](https://doi.org/10.1016/j.procs.2024.04.251)
 
 [Keywords] _Semantic Segmentation; Sports Analytics; Football; Computer Vision; Deep Learning; Convolutional Neural Networks_
 
