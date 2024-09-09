@@ -10,6 +10,12 @@ Our approach involves training multiple state-of-the-art deep learning models on
 
 The repository includes the full pipeline for training, testing, and deploying these models, along with the necessary code, dataset structure, and pre-trained weights. The results demonstrate significant improvements in segmentation accuracy, making this approach highly effective for real-world football analytics applications.
 
+> Semantic Segmentation, a pivotal technique in image analysis, is adeptly leveraged in this research to bolster sports analytics, with a concentrated focus on football. A comprehensive pipeline is unveiled for an in-depth analysis of a select portion of the IAUFD 100k dataset, encompassing 2030 manually annotated football images. The methodology entails a thorough evaluation and comparison of diverse semantic segmentation models, supplemented by the integration of advanced pre-processing strategies and optimal training techniques. Such a holistic approach culminates in a marked enhancement in model performance, as evidenced by a significant uptick in the mean Intersection over Union (mIoU). This research offers granular, object-oriented insights that substantially augment player tracking, action recognition, and event detection in football. The conclusive remarks of the study highlight prospective avenues for further research, emphasizing the potential incorporation of Explainable AI and advanced Metamorphic and Security Testing to fortify sports analytics.
+
+[Authors]: **Bharathi Malakreddy A, Sadanand Venkataraman, Mohammed Sinan Khan,  Nidhi, Srinivas Padmanabhuni, Santhi Natarajan**
+[Paper](https://www.sciencedirect.com/science/article/pii/S187705092400927X)
+[Keywords] _Semantic Segmentation; Sports Analytics; Football; Computer Vision; Deep Learning; Convolutional Neural Networks): _
+
 ## Table of Contents
 
 - [Overview](#overview)
