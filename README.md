@@ -122,31 +122,31 @@ python train.py --model SegNet --base_model VGG16 --dataset Football_Seg --num_c
 
 | Argument        | Description                                  | Example                   | Options                                        |
 |-----------------|----------------------------------------------|---------------------------|------------------------------------------------|
-| --model         | Specifies the semantic segmentation model    | SegNet                    | SegNet, UNet, PSPNet, DeepLabV3, DeepLabV3Plus |
-| --base_model    | Defines the backbone architecture            | VGG16                     | VGG16, ResNet50, Xception-DeepLab, MobileNetV2, Densenet121 |
-| --dataset       | Path to the dataset                          | Football_Seg              | Any valid dataset path                         |
-| --loss          | Loss function to use during training         | CE                        | CE, Focal_Loss                                 |
-| --num_classes   | Number of output classes                     | 6                         | Any integer                                    |
-| --random_crop   | Apply random cropping during augmentation     | True                      | True, False                                    |
-| --crop_height   | Height for random cropping                   | 864                       | Any integer                                    |
-| --crop_width    | Width for random cropping                    | 864                       | Any integer                                    |
-| --batch_size    | Size of the training batches                 | 8                         | Any integer                                    |
-| --valid_batch_size | Size of the validation batches             | 1                         | Any integer                                    |
-| --num_epochs    | Number of training epochs                    | 50                        | Any integer                                    |
-| --initial_epoch | Starting epoch number                        | 0                         | Any integer                                    |
-| --h_flip        | Apply horizontal flip for data augmentation  | True                      | True, False                                    |
-| --v_flip        | Apply vertical flip for data augmentation    | True                      | True, False                                    |
-| --brightness    | Brightness adjustment range for augmentation | [0.7, 1.3]                | Any valid range                                |
-| --rotation      | Rotation angle for data augmentation         | 0.35                      | Any float                                      |
-| --zoom_range    | Zoom range for data augmentation             | [0.4, 1.6]                | Any valid range                                |
-| --channel_shift | Channel shift range for data augmentation    | 0.1                       | Any float                                      |
-| --data_aug_rate | Proportion of the data to apply augmentation | 0.1                       | Any float                                      |
-| --checkpoint_freq | Frequency of saving model checkpoints       | 10                        | Any integer                                    |
-| --validation_freq | Frequency of validation during training     | 2                         | Any integer                                    |
-| --num_valid_images | Number of images to use for validation      | 18                        | Any integer                                    |
-| --data_shuffle  | Shuffle data during training                 | True                      | True, False                                    |
-| --random_seed   | Random seed for reproducibility              | 32                        | Any integer                                    |
-| --weights       | Path to pre-trained weights                  | weights/weights_path      | Any valid path                                 |
+| `--model`         | Specifies the semantic segmentation model    | SegNet                    | SegNet, UNet, PSPNet, DeepLabV3, DeepLabV3Plus |
+| `--base_model`    | Defines the backbone architecture            | VGG16                     | VGG16, ResNet50, Xception-DeepLab, MobileNetV2, Densenet121 |
+| `--dataset`       | Path to the dataset                          | Football_Seg              | Any valid dataset path                         |
+| `--loss`          | Loss function to use during training         | CE                        | CE, Focal_Loss                                 |
+| `--num_classes`   | Number of output classes                     | 6                         | Any integer                                    |
+| `--random_crop`   | Apply random cropping during augmentation     | True                      | True, False                                    |
+| `--crop_height`   | Height for random cropping                   | 864                       | Any integer                                    |
+| `--crop_width`    | Width for random cropping                    | 864                       | Any integer                                    |
+| `--batch_size`    | Size of the training batches                 | 8                         | Any integer                                    |
+| `--valid_batch_size` | Size of the validation batches             | 1                         | Any integer                                    |
+| `--num_epochs`    | Number of training epochs                    | 50                        | Any integer                                    |
+| `--initial_epoch` | Starting epoch number                        | 0                         | Any integer                                    |
+| `--h_flip`        | Apply horizontal flip for data augmentation  | True                      | True, False                                    |
+| `--v_flip`        | Apply vertical flip for data augmentation    | True                      | True, False                                    |
+| `--brightness`    | Brightness adjustment range for augmentation | [0.7, 1.3]                | Any valid range                                |
+| `--rotation`      | Rotation angle for data augmentation         | 0.35                      | Any float                                      |
+| `--zoom_range`    | Zoom range for data augmentation             | [0.4, 1.6]                | Any valid range                                |
+| `--channel_shift` | Channel shift range for data augmentation    | 0.1                       | Any float                                      |
+| `--data_aug_rate` | Proportion of the data to apply augmentation | 0.1                       | Any float                                      |
+| `--checkpoint_freq` | Frequency of saving model checkpoints       | 10                        | Any integer                                    |
+| `--validation_freq` | Frequency of validation during training     | 2                         | Any integer                                    |
+| `--num_valid_images` | Number of images to use for validation      | 18                        | Any integer                                    |
+| `--data_shuffle`  | Shuffle data during training                 | True                      | True, False                                    |
+| `--random_seed`   | Random seed for reproducibility              | 32                        | Any integer                                    |
+| `--weights`       | Path to pre-trained weights                  | weights/weights_path      | Any valid path                                 |
 
 
 ### Testing
@@ -161,11 +161,11 @@ python test.py --model SegNet --base_model VGG16 --dataset Football_Seg --num_cl
 
 | Argument      | Description                                    | Example                   | Options                                        |
 |---------------|------------------------------------------------|---------------------------|------------------------------------------------|
-| --model       | Specifies the semantic segmentation model      | SegNet                    | SegNet, UNet, PSPNet, DeepLabV3, DeepLabV3Plus |
-| --base_model  | Defines the backbone architecture              | VGG16                     | VGG16, ResNet50, Xception-DeepLab, MobileNetV2, Densenet121 |
-| --dataset     | Path to the dataset                            | Football_Seg              | Any valid dataset path                         |
-| --num_classes | Number of output classes                       | 6                         | Any integer                                    |
-| --weights     | Path to pre-trained model weights              | weights/weights_path      | Any valid path                                 |
+| `--model`       | Specifies the semantic segmentation model      | SegNet                    | SegNet, UNet, PSPNet, DeepLabV3, DeepLabV3Plus |
+| `--base_model`  | Defines the backbone architecture              | VGG16                     | VGG16, ResNet50, Xception-DeepLab, MobileNetV2, Densenet121 |
+| `--dataset`     | Path to the dataset                            | Football_Seg              | Any valid dataset path                         |
+| `--num_classes` | Number of output classes                       | 6                         | Any integer                                    |
+| `--weights`     | Path to pre-trained model weights              | weights/weights_path      | Any valid path                                 |
 
 
 ### Predicting
@@ -180,11 +180,11 @@ python predict.py --model DeepLabV3 --base_model ResNet50 --num_classes 6 --weig
 
 | Argument      | Description                                    | Example                   | Options                                        |
 |---------------|------------------------------------------------|---------------------------|------------------------------------------------|
-| --model       | Specifies the semantic segmentation model      | DeepLabV3                 | SegNet, UNet, PSPNet, DeepLabV3, DeepLabV3Plus |
-| --base_model  | Defines the backbone architecture              | ResNet50                  | VGG16, ResNet50, Xception-DeepLab, MobileNetV2, Densenet121 |
-| --num_classes | Number of output classes                       | 6                         | Any integer                                    |
-| --weights     | Path to pre-trained model weights              | weights/DeepLabV3_based_on_ResNet50.h5 | Any valid path |
-| --image_path  | Path to the input image for prediction         | Prediction_images/image_path | Any valid path                                 |
+| `--model`       | Specifies the semantic segmentation model      | DeepLabV3                 | SegNet, UNet, PSPNet, DeepLabV3, DeepLabV3Plus |
+| `--base_model`  | Defines the backbone architecture              | ResNet50                  | VGG16, ResNet50, Xception-DeepLab, MobileNetV2, Densenet121 |
+| `--num_classes` | Number of output classes                       | 6                         | Any integer                                    |
+| `--weights`     | Path to pre-trained model weights              | weights/DeepLabV3_based_on_ResNet50.h5 | Any valid path |
+| `--image_path`  | Path to the input image for prediction         | Prediction_images/image_path | Any valid path                                 |
 
 The predicted output will be saved in the `Predictions` folder.
 
@@ -194,52 +194,52 @@ The predicted output will be saved in the `Predictions` folder.
 
 | Argument      | Description                                  | Example                 | Options                                        |
 |---------------|----------------------------------------------|-------------------------|------------------------------------------------|
-| --model       | Choose the semantic segmentation model       | SegNet                  | SegNet, UNet, PSPNet, DeepLabV3, DeepLabV3Plus |
-| --base_model  | Choose the backbone architecture             | VGG16                   | VGG16, ResNet50, Xception-DeepLab, MobileNetV2, Densenet121 |
-| --dataset     | Path to the dataset                          | Football_Seg            | Any valid dataset path                         |
-| --loss        | Choose the loss function for training        | CE                      | CE, Focal_Loss                                 |
-| --num_classes | Number of output classes to segment          | 6                       | Any integer                                    |
-| --random_crop | Apply random cropping during augmentation    | True                    | True, False                                    |
-| --crop_height | Height for random cropping                   | 864                     | Any integer                                    |
-| --crop_width  | Width for random cropping                    | 864                     | Any integer                                    |
-| --batch_size  | Training batch size                          | 8                       | Any integer                                    |
-| --valid_batch_size | Validation batch size                  | 1                       | Any integer                                    |
-| --num_epochs  | Total number of training epochs              | 50                      | Any integer                                    |
-| --initial_epoch | Initial epoch to start training from        | 0                       | Any integer                                    |
-| --h_flip      | Apply horizontal flip for augmentation       | True                    | True, False                                    |
-| --v_flip      | Apply vertical flip for augmentation         | True                    | True, False                                    |
-| --brightness  | Brightness range for augmentation            | [0.7, 1.3]              | Any valid range                                |
-| --rotation    | Rotation angle for augmentation              | 0.35                    | Any float                                      |
-| --zoom_range  | Zoom range for augmentation                  | [0.4, 1.6]              | Any valid range                                |
-| --channel_shift | Channel shift range for augmentation       | 0.1                     | Any float                                      |
-| --data_aug_rate | Rate of data augmentation                  | 0.1                     | Any float                                      |
-| --checkpoint_freq | Frequency to save model checkpoints       | 10                      | Any integer                                    |
-| --validation_freq | Frequency to run validation              | 2                       | Any integer                                    |
-| --num_valid_images | Number of images for validation         | 18                      | Any integer                                    |
-| --data_shuffle | Shuffle data during training                | True                    | True, False                                    |
-| --random_seed | Seed for random number generation            | 32                      | Any integer                                    |
-| --weights     | Path to pre-trained weights                  | weights/weights_path    | Any valid path                                 |
+| `--model`       | Choose the semantic segmentation model       | SegNet                  | SegNet, UNet, PSPNet, DeepLabV3, DeepLabV3Plus |
+| `--base_model`  | Choose the backbone architecture             | VGG16                   | VGG16, ResNet50, Xception-DeepLab, MobileNetV2, Densenet121 |
+| `--dataset`     | Path to the dataset                          | Football_Seg            | Any valid dataset path                         |
+| `--loss`        | Choose the loss function for training        | CE                      | CE, Focal_Loss                                 |
+| `--num_classes` | Number of output classes to segment          | 6                       | Any integer                                    |
+| `--random_crop` | Apply random cropping during augmentation    | True                    | True, False                                    |
+| `--crop_height` | Height for random cropping                   | 864                     | Any integer                                    |
+| `--crop_width`  | Width for random cropping                    | 864                     | Any integer                                    |
+| `--batch_size`  | Training batch size                          | 8                       | Any integer                                    |
+| `--valid_batch_size` | Validation batch size                  | 1                       | Any integer                                    |
+| `--num_epochs`  | Total number of training epochs              | 50                      | Any integer                                    |
+| `--initial_epoch` | Initial epoch to start training from        | 0                       | Any integer                                    |
+| `--h_flip`      | Apply horizontal flip for augmentation       | True                    | True, False                                    |
+| `--v_flip`      | Apply vertical flip for augmentation         | True                    | True, False                                    |
+| `--brightness`  | Brightness range for augmentation            | [0.7, 1.3]              | Any valid range                                |
+| `--rotation`    | Rotation angle for augmentation              | 0.35                    | Any float                                      |
+| `--zoom_range`  | Zoom range for augmentation                  | [0.4, 1.6]              | Any valid range                                |
+| `--channel_shift` | Channel shift range for augmentation       | 0.1                     | Any float                                      |
+| `--data_aug_rate` | Rate of data augmentation                  | 0.1                     | Any float                                      |
+| `--checkpoint_freq` | Frequency to save model checkpoints       | 10                      | Any integer                                    |
+| `--validation_freq` | Frequency to run validation              | 2                       | Any integer                                    |
+| `--num_valid_images` | Number of images for validation         | 18                      | Any integer                                    |
+| `--data_shuffle` | Shuffle data during training                | True                    | True, False                                    |
+| `--random_seed` | Seed for random number generation            | 32                      | Any integer                                    |
+| `--weights`     | Path to pre-trained weights                  | weights/weights_path    | Any valid path                                 |
 
 ### Testing Parameters
 
 | Argument      | Description                                  | Example                 | Options                                        |
 |---------------|----------------------------------------------|-------------------------|------------------------------------------------|
-| --model       | Choose the semantic segmentation model       | SegNet                  | SegNet, UNet, PSPNet, DeepLabV3, DeepLabV3Plus |
-| --base_model  | Choose the backbone architecture             | VGG16                   | VGG16, ResNet50, Xception-DeepLab, MobileNetV2, Densenet121 |
-| --dataset     | Path to the dataset                          | Football_Seg            | Any valid dataset path                         |
-| --num_classes | Number of output classes to segment          | 6                       | Any integer                                    |
-| --weights     | Path to pre-trained model weights            | weights/weights_path    | Any valid path                                 |
+| `--model`       | Choose the semantic segmentation model       | SegNet                  | SegNet, UNet, PSPNet, DeepLabV3, DeepLabV3Plus |
+| `--base_model`  | Choose the backbone architecture             | VGG16                   | VGG16, ResNet50, Xception-DeepLab, MobileNetV2, Densenet121 |
+| `--dataset`     | Path to the dataset                          | Football_Seg            | Any valid dataset path                         |
+| `--num_classes` | Number of output classes to segment          | 6                       | Any integer                                    |
+| `--weights`     | Path to pre-trained model weights            | weights/weights_path    | Any valid path                                 |
 
 
 ### Predicting Parameters
 
 | Argument      | Description                                  | Example                                       | Options                                        |
 |---------------|----------------------------------------------|-----------------------------------------------|------------------------------------------------|
-| --model       | Choose the semantic segmentation model       | DeepLabV3                                     | SegNet, UNet, PSPNet, DeepLabV3, DeepLabV3Plus |
-| --base_model  | Choose the backbone architecture             | ResNet50                                      | VGG16, ResNet50, Xception-DeepLab, MobileNetV2, Densenet121 |
-| --num_classes | Number of output classes to segment          | 6                                             | Any integer                                    |
-| --weights     | Path to pre-trained model weights            | weights/DeepLabV3_based_on_ResNet50.h5        | Any valid path                                 |
-| --image_path  | Path to the input image for prediction       | Prediction_images/image_path                  | Any valid path                                 |
+| `--model`       | Choose the semantic segmentation model       | DeepLabV3                                     | SegNet, UNet, PSPNet, DeepLabV3, DeepLabV3Plus |
+| `--base_model`  | Choose the backbone architecture             | ResNet50                                      | VGG16, ResNet50, Xception-DeepLab, MobileNetV2, Densenet121 |
+| `--num_classes` | Number of output classes to segment          | 6                                             | Any integer                                    |
+| `--weights`     | Path to pre-trained model weights            | weights/DeepLabV3_based_on_ResNet50.h5        | Any valid path                                 |
+| `--image_path`  | Path to the input image for prediction       | Prediction_images/image_path                  | Any valid path                                 |
 
 ## Acknowledgments
 
